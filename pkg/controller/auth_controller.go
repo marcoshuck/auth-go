@@ -8,15 +8,15 @@ import (
 )
 
 type AuthController interface {
-	Login(ctx gin.Context)
-	Register(ctx gin.Context)
+	Login(ctx *gin.Context)
+	Register(ctx *gin.Context)
 }
 
 type authController struct {
 	authService service.AuthService
 }
 
-func (a authController) Login(ctx gin.Context) {
+func (a authController) Login(ctx *gin.Context) {
 	var body dto.Login
 
 	err := ctx.BindJSON(&body)
@@ -37,7 +37,7 @@ func (a authController) Login(ctx gin.Context) {
 	})
 }
 
-func (a authController) Register(ctx gin.Context) {
+func (a authController) Register(ctx *gin.Context) {
 	var body dto.Register
 	err := ctx.BindJSON(&body)
 	if err != nil {

@@ -42,5 +42,7 @@ func (g *gormUserRepository) Create(user model.User) (*model.User, error) {
 }
 
 func NewUserRepository(db *gorm.DB) UserRepository {
-	return &gormUserRepository{}
+	return &gormUserRepository{
+		db: db,
+	}
 }
