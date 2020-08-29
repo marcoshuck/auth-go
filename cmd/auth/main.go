@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	server := http.NewServer()
+	server := http.NewRouter()
 	db, err := gorm.Open("sqlite3", "file::memory:?cache=shared")
 	if err != nil {
 		panic(err)

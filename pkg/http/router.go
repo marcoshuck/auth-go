@@ -5,7 +5,8 @@ import (
 	"github.com/marcoshuck/auth-go/pkg/controller"
 )
 
-func NewServer() *gin.Engine {
+// NewRouter initializes a new gin router.
+func NewRouter() *gin.Engine {
 	return gin.Default()
 }
 

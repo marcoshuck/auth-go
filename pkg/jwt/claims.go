@@ -4,7 +4,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-// Profile represents a user profile.
+// Profile represents an user profile.
 type Profile struct {
 	Email     string `json:"email"`
 	FirstName string `json:"first_name"`

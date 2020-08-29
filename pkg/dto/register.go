@@ -1,10 +1,15 @@
 package dto
 
-// Register represents the needed information to create an user in the system.
+// Register has the needed information to register an user.
 type Register struct {
+	// FirstName is the user's first name.
 	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Email     string `json:"email"`
-	Username  string `json:"username"`
-	Password  string `json:"password"`
+	// LastName is the user's last name.
+	LastName string `json:"last_name"`
+	// Email is the user's email.
+	Email string `json:"email"`
+	// Username is the unique user's identifier.
+	Username string `json:"username"`
+	// Password is the plain-text user's password.
+	Password string `json:"password"`
 }
