@@ -6,6 +6,7 @@ import (
 	"github.com/marcoshuck/auth-go/pkg/jwt"
 	"github.com/marcoshuck/auth-go/pkg/model"
 	"github.com/marcoshuck/auth-go/pkg/password"
+	"github.com/marcoshuck/auth-go/pkg/validator"
 )
 
 // AuthService groups a set of methods to login and register an user into the system.
@@ -22,10 +23,17 @@ type authService struct {
 	userService UserService
 	// secretKey is the key used to sign tokens.
 	secretKey []byte
+	validator validator.Validator
 }
 
 // Login checks if the given login credentials are valid and returns a token and the expiration time.
 func (a *authService) Login(input dto.Login) (string, int64, error) {
+	// Validate input
+	err := a.validator.Struct(input)
+	if err != nil {
+		return "", 0, err
+	}
+
 	// Get the user by email.
 	user, err := a.userService.GetByEmail(input.Email)
 	if err != nil {
@@ -55,6 +63,12 @@ func (a *authService) Login(input dto.Login) (string, int64, error) {
 
 // Register checks if the given sign up credentials are valid and returns the user that was created.
 func (a *authService) Register(input dto.Register) (*model.User, error) {
+	// Validate input
+	err := a.validator.Struct(input)
+	if err != nil {
+		return nil, err
+	}
+
 	// Generate password
 	pass, err := password.Generate(input.Password)
 	if err != nil {
@@ -79,9 +93,10 @@ func (a *authService) Register(input dto.Register) (*model.User, error) {
 }
 
 // NewAuthService initializes a new authentication service using an UserService and a secretKey.
-func NewAuthService(userService UserService, secretKey []byte) AuthService {
+func NewAuthService(userService UserService, validator validator.Validator, secretKey []byte) AuthService {
 	return &authService{
 		userService: userService,
+		validator:   validator,
 		secretKey:   secretKey,
 	}
 }

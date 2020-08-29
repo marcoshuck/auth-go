@@ -5,6 +5,7 @@ import (
 	"github.com/marcoshuck/auth-go/pkg/dto"
 	"github.com/marcoshuck/auth-go/pkg/model"
 	"github.com/marcoshuck/auth-go/pkg/repository"
+	"github.com/marcoshuck/auth-go/pkg/validator"
 )
 
 // UserService is the service used to get and create users.
@@ -22,6 +23,7 @@ type UserService interface {
 // userService is a UserService implementation.
 type userService struct {
 	repository repository.UserRepository
+	validator  validator.Validator
 }
 
 // Get gets an user with the given UUID.
@@ -59,8 +61,9 @@ func (u userService) Create(createUser dto.CreateUser) (*model.User, error) {
 }
 
 // NewUserService initializes a new UserService implementation with the given user repository.
-func NewUserService(repository repository.UserRepository) UserService {
+func NewUserService(repository repository.UserRepository, validator validator.Validator) UserService {
 	return &userService{
 		repository: repository,
+		validator:  validator,
 	}
 }
