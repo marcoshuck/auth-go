@@ -71,3 +71,4 @@ Please make sure to update tests as appropriate.
 - [X] Validation
 - [ ] CI/CD
 - [ ] Error handling
+- [ ] Event subscription/publishing
