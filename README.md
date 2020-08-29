@@ -72,3 +72,5 @@ Please make sure to update tests as appropriate.
 - [ ] CI/CD
 - [ ] Error handling
 - [ ] Event subscription/publishing
+- [ ] API Rest layers tests (Controller, service, repository)
+- [ ] Integration tests.
