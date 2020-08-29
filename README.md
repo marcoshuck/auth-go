@@ -2,7 +2,7 @@
 This project is an authentication microservice written in go that follows Clean Architecture and SOLID patterns.
 
 ## Installation
-```shell script
+```bash
 $ go mod download
 ```
 
@@ -63,3 +63,11 @@ func main() {
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## TODO
+- [ ] Refresh tokens
+    - [ ] Invalidation
+- [ ] Logging
+- [X] Validation
+- [ ] CI/CD
+- [ ] Error handling
